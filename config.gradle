@@ -1,12 +1,14 @@
 ext {
     def supportVersion = "27.1.0"
+    def versionCode = getBuildTime()
     android = [
             compileSdkVersion: 30,
             buildToolsVersion: "30.0.3",
             applicationId    : "com.yazao.app",
             minSdkVersion    : 21,
             targetSdkVersion : 30,
-            versionCode      : getBuildTime(),
+//            versionCode      : versionCode,
+            versionCode      : 100,
             versionName      : "1.0.0"
     ]
 
