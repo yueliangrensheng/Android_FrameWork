@@ -1,18 +1,24 @@
-plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
+if (isBuildModule.toBoolean()) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
 }
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
-        applicationId rootProject.ext.android.applicationId
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
+
+
+        consumerProguardFiles "consumer-rules.pro"
 
         // 1.ARouter
         javaCompileOptions {
@@ -21,7 +27,6 @@ android {
             }
         }
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -36,55 +41,35 @@ android {
         jvmTarget = '1.8'
     }
 
-    lintOptions {
-        checkReleaseBuilds false
-        abortOnError false
-    }
 
-    //统一资源前缀，规范资源使用
-    resourcePrefix "app_"
-    //数据绑定
     dataBinding {
         enabled true
     }
+
     //配置清单文件
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
 
-            if (isBuildModule.toBoolean()){
+            if (isBuildModule.toBoolean()) {
                 //独立运行
                 manifest.srcFile 'src/main/moon/AndroidManifest.xml'
             } else {
                 //集成到宿主
                 manifest.srcFile 'src/main/AndroidManifest.xml'
+                resources {
+                    //正式版本 排除 moon文件夹下的内容
+                    exclude 'src/main/moon/*'
+                }
             }
         }
     }
+
 }
 
 dependencies {
-    implementation fileTree(includes: ['*.jar'], dir: 'libs')
+    kapt rootProject.ext.dependencies['databinding_compiler']
+    kapt rootProject.ext.dependencies['arouter_compiler']
 
-    println("---------- 1. app.isBuildModule = ${isBuildModule}")
-    println(isBuildModule)
-    //宿主项目中判断组件是否需要独立运行
-    if (isBuildModule.toBoolean()) {
-        println("--------1.app.true")
-        implementation project(':library-base')
-    } else {
-        println("--------1.app.false")
-        implementation project(':library-base')
-        //登录模块
-        implementation project(':module-login')
-        //主业务模块
-        implementation project(':module-main')
-        //主页模块
-        implementation project(':module-home')
-    }
-
-
-//    kapt "androidx.databinding:databinding-compiler:4.1.2"
-//    implementation 'com.alibaba:arouter-api:1.5.1'
-//    annotationProcessor 'com.alibaba:arouter-compiler:1.5.1'
+    implementation project(':library-base')
 }

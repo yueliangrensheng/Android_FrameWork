@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--   logo     -->
+        <ImageView
+            android:id="@+id/login_logo"
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="@dimen/dp_60"
+            android:layout_marginTop="@dimen/dp_60"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:src="@color/color_999999" />
+
+        <!--   username   -->
+        <ImageView
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
+            android:src="@mipmap/icon_login_user"
+            app:layout_constraintBottom_toBottomOf="@id/login_username"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/login_username"
+            app:layout_constraintTop_toTopOf="@id/login_username" />
+
+        <EditText
+            android:id="@+id/login_username"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginLeft="@dimen/dp_60"
+            android:layout_marginTop="@dimen/dp_30"
+            android:layout_marginRight="@dimen/dp_20"
+            android:hint="@string/login_username_hint"
+            android:maxLines="1"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/sp_18"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/login_logo"
+            tools:text="@string/login_username_hint" />
+        <!--   password     -->
+        <ImageView
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
+            android:src="@mipmap/icon_login_pwd"
+            app:layout_constraintBottom_toBottomOf="@id/login_password"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/login_password"
+            app:layout_constraintTop_toTopOf="@id/login_password" />
+
+        <EditText
+            android:id="@+id/login_password"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginLeft="@dimen/dp_60"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_80"
+            android:hint="@string/login_password_hint"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/sp_18"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/login_username" />
+
+        <ImageView
+            android:id="@+id/login_password_show"
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
+            android:src="@mipmap/icon_eye_close"
+            app:layout_constraintBottom_toBottomOf="@id/login_password"
+            app:layout_constraintLeft_toRightOf="@id/login_password"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/login_password" />
+
+        <!--    login    -->
+        <TextView
+            android:id="@+id/login_login"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_60"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_40"
+            android:layout_marginRight="@dimen/dp_20"
+            android:background="@drawable/bg_login_selector"
+            android:gravity="center"
+            android:text="@string/login_login"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/sp_22"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/login_password" />
+
+
+        <!--   privacy policy     -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/dp_10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <TextView
+                android:id="@+id/login_privacy_policy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dp_10"
+                android:paddingBottom="@dimen/dp_10"
+                android:text="@string/settings_privacy_policy"
+                android:textColor="@color/color_3f51b5" />
+
+            <View
+                android:layout_width="@dimen/dp_1"
+                android:layout_height="@dimen/dp_16"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/dp_2"
+                android:layout_marginRight="@dimen/dp_2"
+                android:background="@color/color_3f51b5" />
+
+            <TextView
+                android:id="@+id/login_user_agreement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dp_10"
+                android:paddingBottom="@dimen/dp_10"
+                android:text="@string/settings_user_agreement"
+                android:textColor="@color/color_3f51b5" />
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

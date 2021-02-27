@@ -1,4 +1,6 @@
-include ':base'
-include ':login'
+include ':module-home'
+include ':module-main'
+include ':library-base'
+include ':module-login'
 include ':app'
 rootProject.name = "Android_FrameWork"

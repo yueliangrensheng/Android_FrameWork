@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yazao.login">
+
+    <application>
+        <activity
+            android:name="com.yazao.login.SplashActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.yazao.login.LoginActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+    </application>
+</manifest>

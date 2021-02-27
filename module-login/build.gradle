@@ -1,0 +1,17 @@
+apply from: '../module.build.gradle'
+
+android {
+    defaultConfig {
+
+        if (isBuildModule.toBoolean()) {
+            applicationId 'com.yazao.login'
+        }
+    }
+
+    resourcePrefix 'login_'
+}
+
+dependencies {
+
+
+}
