@@ -16,6 +16,14 @@ ext {
     modules = [
             package_module_login: "com.yazao.login",
             package_module_main : "com.yazao.main",
+            package_module_home : "com.yazao.home"
+    ]
+
+    //配置各个模块资源前缀
+    resourcePrefix = [
+            package_module_home: "home_",
+            package_module_login: "login_",
+            package_module_main : "main_"
     ]
 
 
