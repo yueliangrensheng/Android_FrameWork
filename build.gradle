@@ -6,7 +6,7 @@
 
         //加载资源
         Properties properties = new Properties()
-        InputStream inputStream = project.rootProject.file('local.properties').newDataInputStream() ;
+        InputStream inputStream = project.rootProject.file('build.properties').newDataInputStream() ;
         properties.load( inputStream )
 
         def isBuildMod = properties.getProperty("isBuildModule")
