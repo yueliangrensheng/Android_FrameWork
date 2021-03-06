@@ -4,11 +4,11 @@ android {
     defaultConfig {
 
         if (isBuildModule.toBoolean()) {
-            applicationId 'com.yazao.main'
+            applicationId rootProject.ext.modules['package_module_main']
         }
     }
 
-    resourcePrefix 'main_'
+    resourcePrefix rootProject.ext.resourcePrefix['package_module_main']
 }
 
 dependencies {
