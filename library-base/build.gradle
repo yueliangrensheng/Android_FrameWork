@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -47,6 +49,7 @@ dependencies {
 
     api rootProject.ext.dependencies['kotlin_stdlib']
     api rootProject.ext.dependencies['core_ktx']
+    api rootProject.ext.dependencies['kotlinx_coroutines_android']
     api rootProject.ext.dependencies['androidx_appcompat']
     api rootProject.ext.dependencies['androidx_constraintlayout']
     api rootProject.ext.dependencies['material']
@@ -54,6 +57,6 @@ dependencies {
     //ARouter
     api rootProject.ext.dependencies['arouter_api']
 
-    api "com.yazao:xbase:1.0.6.2"
+    api "com.yazao:xbase:1.0.7"
     api "com.yazao:xtoast:1.0.2"
 }
