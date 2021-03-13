@@ -12,7 +12,7 @@ ext {
             versionName      : "1.0.0"
     ]
 
-    //配置各个模块
+    //配置各个模块独立运行时的包名
     modules = [
             package_module_login: "com.yazao.login",
             package_module_main : "com.yazao.main",
@@ -21,7 +21,7 @@ ext {
 
     //配置各个模块资源前缀
     resourcePrefix = [
-            package_module_home: "home_",
+            package_module_home : "home_",
             package_module_login: "login_",
             package_module_main : "main_"
     ]
@@ -29,8 +29,9 @@ ext {
 
     version_kotlin_stdlib_jdk8 = "1.4.21"
     version_kotlin_stdlib = "1.4.21"
-    version_coreKtx = "1.1.0"
-    kotlinx_coroutines_android = "1.3.9"
+    version_coreKtx = "1.3.2"
+    version_kotlinx_coroutines_android = "1.4.2"
+    version_lifecycle_viewmodel_ktx = "2.3.0"
 
     version_appcompat = "1.2.0"
     version_recyclerview = "1.1.0"
@@ -61,10 +62,12 @@ ext {
             kotlin_stdlib_jdk8        : "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version_kotlin_stdlib_jdk8",
             kotlin_stdlib             : "org.jetbrains.kotlin:kotlin-stdlib:$version_kotlin_stdlib",
             core_ktx                  : "androidx.core:core-ktx:$version_coreKtx",
-            //Kotlin Coroutines
-            kotlinx_coroutines_android         : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinx_coroutines_android",
+            //Coroutines
+            kotlinx_coroutines_android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_kotlinx_coroutines_android",
+            //ViewModel
+            lifecycle_viewmodel_ktx   : "androidx.lifecycle:lifecycle-viewmodel-ktx:$version_lifecycle_viewmodel_ktx",
 
-            //google
+            //material
             material                  : "com.google.android.material:material:$version_material",
 
 
@@ -84,8 +87,8 @@ ext {
 
 
             //ARouter
-            arouter_api             : "com.alibaba:arouter-api:$version_arouter_api",
-            arouter_compiler        : "com.alibaba:arouter-compiler:$version_arouter_compiler",
+            arouter_api               : "com.alibaba:arouter-api:$version_arouter_api",
+            arouter_compiler          : "com.alibaba:arouter-compiler:$version_arouter_compiler",
 
     ]
 
