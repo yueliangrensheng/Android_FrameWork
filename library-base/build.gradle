@@ -53,10 +53,38 @@ dependencies {
     api rootProject.ext.dependencies['androidx_appcompat']
     api rootProject.ext.dependencies['androidx_constraintlayout']
     api rootProject.ext.dependencies['material']
+    api rootProject.ext.dependencies['androidx_multidex']
 
     //ARouter
     api rootProject.ext.dependencies['arouter_api']
 
-    api "com.yazao:xbase:1.0.7"
-    api "com.yazao:xtoast:1.0.2"
+    api "io.github.yueliangrensheng:xbase:1.0.7.2"
+    api "io.github.yueliangrensheng:xtoast:1.0.3"
+    api "io.github.yueliangrensheng:xlog:1.0.2"
+    api "io.github.yueliangrensheng:xdialog:1.0.1"
+
+    //retrofit
+    api rootProject.ext.dependencies['retrofit']
+    api rootProject.ext.dependencies['retrofit_converter_gson']
+    //okhttp
+    api rootProject.ext.dependencies['okhttp']
+    api rootProject.ext.dependencies['okio']
+    api rootProject.ext.dependencies['okhttp_logging_interceptor']
+
+    // 下拉刷新
+    api  'com.scwang.smart:refresh-layout-kernel:2.0.3'      //核心必须依赖
+    api  'com.scwang.smart:refresh-header-classics:2.0.3'    //经典刷新头
+    api  'com.scwang.smart:refresh-footer-classics:2.0.3'    //经典加载
+
+
+    //permissionx
+    api 'com.permissionx.guolindev:permissionx:1.4.0'
+
+    //Bugly
+    api 'com.tencent.bugly:crashreport:3.3.92'
+
+    //U盟
+    api 'com.umeng.umsdk:common:9.3.8'
+    api 'com.umeng.umsdk:asms:1.2.2'
+    api 'com.umeng.umsdk:apm:1.2.0'
 }

@@ -2,4 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yazao.base">
 
+    <application>
+        <activity
+            android:name="com.yazao.base.WebActivity"
+            android:screenOrientation="portrait" />
+    </application>
 </manifest>

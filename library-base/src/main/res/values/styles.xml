@@ -1,0 +1,31 @@
+<resources>
+
+  <style name="ToolbarTextAppearance">
+    <item name="android:textSize">@dimen/sp_18</item>
+    <item name="android:textColor">@color/color_white</item>
+  </style>
+
+  <color name="yz_color_000000_alpha_50">#80000000</color>
+  <style name="XDialogAnim" parent="android:Animation">
+    <!--//进入时的动画-->
+    <item name="@android:windowEnterAnimation">@anim/xdialog_anim_bottom_enter</item>
+    <!--//退出时的动画-->
+    <item name="@android:windowExitAnimation">@anim/xdialog_anim_bottom_exit</item>
+  </style>
+  <style name="XDialogStyle" parent="@android:style/Theme.Dialog">
+    <!--边框-->
+    <item name="android:windowFrame">@null</item>
+    <!--是否浮现在activity之上-->
+    <item name="android:windowIsFloating">true</item>
+    <!-- 屏幕背景变暗--> <!--模糊-->
+    <item name="android:backgroundDimEnabled">true</item>
+    <!--半透明-->
+    <item name="android:windowIsTranslucent">true</item>
+    <!--无标题-->
+    <item name="android:windowNoTitle">true</item>
+    <!-- Dialog背景颜色-->
+    <item name="android:background">@android:color/transparent</item>
+    <!--屏幕背景透明-->
+    <item name="android:windowBackground">@android:color/transparent</item>
+  </style>
+</resources>

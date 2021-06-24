@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="setting_server_error">服务器开小差了~</string>
+    <string name="setting_load_failed">加载失败</string>
+    <string name="settings_user_agreement">用户协议</string>
+    <string name="settings_privacy_policy">隐私政策</string>
+    <string name="setting_logout">退出登录</string>
+    <string name="setting_logout_failed">退出登录失败</string>
+    <string name="setting_token_invalidation">账号已过期，请重新登录</string>
+    <string name="setting_upgrade_content">1.修改了一些已知问题</string>
+    <string name="setting_upgrade_sure">立即更新</string>
+    <string name="setting_cancel">取消</string>
+    <string name="setting_sure">确定</string>
+</resources>

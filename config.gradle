@@ -47,6 +47,10 @@ ext {
     version_databinding_compiler = "4.1.2"
     version_arouter_api = "1.5.1"
     version_arouter_compiler = "1.5.1"
+    version_retrofit = "2.9.0"
+    version_okhttp = "4.9.0"
+    version_okio = "2.9.0"
+    version_multidex = "2.0.1"
 
     dependencies = [
             "appcompat-v7"            : "com.android.support:appcompat-v7:$supportVersion",
@@ -69,7 +73,7 @@ ext {
 
             //material
             material                  : "com.google.android.material:material:$version_material",
-
+            androidx_multidex         : "androidx.multidex:multidex:$version_multidex",
 
             // androidX
             androidx_appcompat        : "androidx.appcompat:appcompat:$version_appcompat",
@@ -89,6 +93,13 @@ ext {
             //ARouter
             arouter_api               : "com.alibaba:arouter-api:$version_arouter_api",
             arouter_compiler          : "com.alibaba:arouter-compiler:$version_arouter_compiler",
+
+            //Retrofit
+            retrofit                  : "com.squareup.retrofit2:retrofit:$version_retrofit",
+            retrofit_converter_gson   : "com.squareup.retrofit2:converter-gson:$version_retrofit",
+            okhttp                    : "com.squareup.okhttp3:okhttp:$version_okhttp",
+            okio                      : "com.squareup.okio:okio:$version_okio",
+            okhttp_logging_interceptor: "com.squareup.okhttp3:logging-interceptor:$version_okhttp",
 
     ]
 
