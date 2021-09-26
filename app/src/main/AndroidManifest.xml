@@ -10,8 +10,21 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Android_FrameWork">
+        android:theme="@style/Theme.Android_FrameWork"
+        android:usesCleartextTraffic="true">
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.4" />
+        <meta-data
+            android:name="android.min_aspect"
+            android:value="1.0" />
+        <meta-data
+            android:name="android.allow_multiple_resumed_activities"
+            android:value="true" />
 
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
 
     </application>
 
