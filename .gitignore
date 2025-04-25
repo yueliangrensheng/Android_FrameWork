@@ -73,3 +73,5 @@ lint/tmp/
 
 # hprof
 *.hprof
+
+.DS_Store
