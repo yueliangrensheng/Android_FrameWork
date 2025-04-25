@@ -1,4 +1,4 @@
-package com.yazao.login.net
+package com.yazao.base.business.net
 
 import com.yazao.base.net.BASE_URL
 import com.yazao.base.net.RetrofitManager
