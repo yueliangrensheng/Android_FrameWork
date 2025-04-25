@@ -1,6 +1,7 @@
-include ':module-home'
-include ':module-main'
+rootProject.name = "Android_FrameWork"
+
+include ':app'
 include ':library-base'
 include ':module-login'
-include ':app'
-rootProject.name = "Android_FrameWork"
+include ':module-main'
+include ':module-home'

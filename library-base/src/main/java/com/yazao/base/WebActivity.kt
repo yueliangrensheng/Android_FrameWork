@@ -4,8 +4,6 @@ import android.annotation.SuppressLint
 import android.webkit.WebSettings
 import android.webkit.WebViewClient
 import com.yazao.base.databinding.ActivityWebBinding
-import kotlinx.android.synthetic.main.activity_web.*
-import kotlinx.android.synthetic.main.layout_toolbar.*
 
 open class WebActivity : BaseToolbarActivityKt<ActivityWebBinding>() {
 
@@ -18,24 +16,24 @@ open class WebActivity : BaseToolbarActivityKt<ActivityWebBinding>() {
 
     override fun initData() {
         var title = intent.getStringExtra(WEB_TITLE)
-        title?.let { setToolbar(toolbar, it) }
+        title?.let { setToolbar(mDataBinding.toolbar, it) }
         val url = intent.getStringExtra(WEB_URL) as String
-        webView.loadUrl(url)
+        mDataBinding.webView.loadUrl(url)
 
         webViewSetting()
     }
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun webViewSetting() {
-        val settings: WebSettings = webView.settings
+        val settings: WebSettings = mDataBinding.webView.settings
         settings.domStorageEnabled = true
         settings.useWideViewPort = true
         settings.loadWithOverviewMode = true
-        if (webView.isHardwareAccelerated) {
+        if (mDataBinding.webView.isHardwareAccelerated) {
             settings.javaScriptEnabled = true
         }
         settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING
-        webView.webViewClient = WebViewClient()
+        mDataBinding.webView.webViewClient = WebViewClient()
     }
 
 }

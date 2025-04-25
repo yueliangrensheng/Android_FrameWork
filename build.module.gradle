@@ -6,6 +6,8 @@ if (isBuildModule.toBoolean()) {
 
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: "kotlin-parcelize"
+apply from: "../buildType.gradle"
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -21,9 +23,9 @@ android {
         consumerProguardFiles "consumer-rules.pro"
 
         // 1.ARouter
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME: project.getName()]
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
             }
         }
     }
@@ -68,7 +70,7 @@ android {
 }
 
 dependencies {
-    kapt rootProject.ext.dependencies['databinding_compiler']
+    //2.ARouter
     kapt rootProject.ext.dependencies['arouter_compiler']
 
     implementation project(':library-base')

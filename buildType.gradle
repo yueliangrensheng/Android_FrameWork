@@ -1,0 +1,55 @@
+android {
+    /* 提供不同环境的配置 */
+    buildTypes {
+        /*测试环境的配置*/
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            buildConfigField "boolean", "IS_BUILD_MODULE", "${isBuildModule}"
+            buildConfigField "String", "BASE_API", '"https://www.baidu.com"'
+            buildConfigField 'String', 'screenOrientation', "\"${screenOrientation}\""
+            buildConfigField "boolean", "RELESE_V1", "false"
+            buildConfigField "boolean", "RELESE_V2", "false"
+            buildConfigField "boolean", "RELESE_V1_1", "false"
+            buildConfigField "boolean", "ENCRYPT", "true"
+            buildConfigField 'int', 'VERSION_CODE', "487"
+            buildConfigField 'String', 'VERSION_NAME', '"1.4.0"'
+            buildConfigField 'String', 'APPLICATION_ID', "\"${rootProject.android.applicationId}\""
+
+            minifyEnabled false
+            zipAlignEnabled true
+            debuggable true
+            jniDebuggable true
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+          /*正式环境的配置*/
+        release {
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            buildConfigField "boolean", "IS_BUILD_MODULE", "${isBuildModule}"
+            buildConfigField "String", "BASE_API", '"https://www.baidu3.com"'
+            buildConfigField 'String', 'screenOrientation', "\"${screenOrientation}\""
+            buildConfigField "boolean", "RELESE_V1", "false"
+            buildConfigField "boolean", "RELESE_V2", "false"
+            buildConfigField "boolean", "RELESE_V1_1", "true"
+            buildConfigField "boolean", "ENCRYPT", "true"
+            //4.1.0 之后的配置 https://issuetracker.google.com/issues/158695880?pli=1
+            //TODO 正式环境打包前注意 要在这里修改版本号
+            buildConfigField 'int', 'VERSION_CODE', "487"
+            buildConfigField 'String', 'VERSION_NAME', '"1.4.0"'
+            buildConfigField 'String', 'APPLICATION_ID', "\"${rootProject.android.applicationId}\""
+            minifyEnabled false
+            debuggable false
+            jniDebuggable false
+            if (isBuildModule.toBoolean()) {
+                //shrinkResources 用来开启删除无用资源
+                shrinkResources true
+            }
+            //zipalign是一个存档对齐工具，可为Android应用程序（APK）文件提供重要的优化。
+            // 目的是确保所有未压缩数据以相对于文件开头的特定对齐开始。
+            // 具体来说，它会导致APK中的所有未压缩数据（如图像或原始文件）在4字节边界上对齐。
+            // 对齐以后,系统就能更加快速的调用APP内的资源
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
