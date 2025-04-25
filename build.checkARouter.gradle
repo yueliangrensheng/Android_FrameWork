@@ -1,0 +1,56 @@
+//自动检测在不同模块下ARouter生成的文件重复问题
+task checkARouterDuplicatedJavaFiles {
+    doLast {
+        def fileMap = [:]
+        def buildTypeList = []
+        def hasPathBuildTypeList = []
+
+        project.extensions.findByName("android").applicationVariants.all { variant ->
+            def buildTypeName = variant.buildType.name
+            if(!buildTypeList.contains(buildTypeName)) {
+                buildTypeList.add(buildTypeName)
+            }
+        }
+
+        project.rootProject.subprojects { subProject ->
+            def subProjectBuildDir
+
+            try {
+                subProjectBuildDir = subProject.buildDir
+
+                if (subProjectBuildDir == null) return
+
+                subProjectBuildDir.eachFileRecurse(FileType.DIRECTORIES) { dir ->
+                    if (dir.path.contains("/generated/source/kapt/") && dir.path.endsWith("com/alibaba/android/arouter/routes")) {
+                        def filePrefix = ""
+                        for (buildType in buildTypeList) {
+                            if(dir.path.toLowerCase().contains(buildType + "/")
+                                    && !hasPathBuildTypeList.contains(subProject.getName() + "/generated/source/kapt/" + buildType + "/")){
+
+                                filePrefix = buildType + "/"
+                                dir.eachFile(FileType.FILES) { file ->
+                                    if (fileMap[filePrefix + file.name] == null) {
+                                        fileMap[filePrefix + file.name] = 0
+                                    }
+                                    fileMap[filePrefix + file.name]++
+                                }
+
+                                hasPathBuildTypeList.add(subProject.getName() + "/generated/source/kapt/" + filePrefix)
+                                return
+                            }
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                // ignore
+                println e.toString()
+            }
+        }
+
+        fileMap.each { key, value ->
+            if (value > 1) {
+                throw new GradleException("ARouter: " + key + " fileCount: " + value + " ,路由地址设置有误！")
+            }
+        }
+    }
+}

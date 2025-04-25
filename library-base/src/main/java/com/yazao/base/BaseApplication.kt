@@ -54,7 +54,7 @@ open class BaseApplication : WBaseApplication() {
     private fun initUMeng() {
         UMConfigure.init(this, APPKEY_UMENG, "Yingyongbao", UMConfigure.DEVICE_TYPE_PHONE, "")//初始化组件化基础库
         MobclickAgent.setPageCollectionMode(MobclickAgent.PageMode.AUTO)//选择AUTO页面采集模式，统计SDK基础指标无需手动埋点可自动采集。
-        UMConfigure.setLogEnabled(application?.isDebug())
+        UMConfigure.setLogEnabled(application.isDebug())
     }
 
     /**
@@ -69,7 +69,7 @@ open class BaseApplication : WBaseApplication() {
         // 设置是否为上报进程
         val strategy = CrashReport.UserStrategy(context)
         strategy.isUploadProcess = processName == null || processName == packageName
-        CrashReport.initCrashReport(applicationContext, APPID_BUGLY, application?.isDebug());
+        CrashReport.initCrashReport(applicationContext, APPID_BUGLY, application.isDebug());
     }
 
     /**

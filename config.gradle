@@ -26,6 +26,16 @@ ext {
             package_module_main : "main_"
     ]
 
+    // 配置三方的appkey
+    configField = [
+
+            // 极光推送
+            JPUSH_APPKEY    : "",
+            JPUSH_CHANNEL   : "default",
+
+
+    ]
+
 
     version_kotlin_stdlib_jdk8 = "1.4.21"
     version_kotlin_stdlib = "1.4.21"
@@ -45,8 +55,8 @@ ext {
     version_lifecycle = "2.2.0"
     version_material = "1.2.1"
     version_databinding_compiler = "4.1.2"
-    version_arouter_api = "1.5.1"
-    version_arouter_compiler = "1.5.1"
+    version_arouter_api = "1.5.2"
+    version_arouter_compiler = "1.5.2"
     version_retrofit = "2.9.0"
     version_okhttp = "4.9.0"
     version_okio = "2.9.0"
@@ -59,7 +69,6 @@ ext {
             "support-v4"              : "com.android.support:support-v4:$supportVersion",
             "recyclerview-v7"         : "com.android.support:recyclerview-v7:$supportVersion",
             "cardview-v7"             : "com.android.support:cardview-v7:$supportVersion",
-            "support-annotations"     : "com.android.support:support-annotations:$supportVersion",
             ""                        : "",
 
             //Kotlin
@@ -73,7 +82,6 @@ ext {
 
             //material
             material                  : "com.google.android.material:material:$version_material",
-            androidx_multidex         : "androidx.multidex:multidex:$version_multidex",
 
             // androidX
             androidx_appcompat        : "androidx.appcompat:appcompat:$version_appcompat",
@@ -112,7 +120,7 @@ ext {
 
 }
 
-def getBuildTime() {
+static def getBuildTime() {
     String currentTime = new Date().format("yyyyMMddHHmm").toString()
     return currentTime
 }

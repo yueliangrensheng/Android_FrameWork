@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
 }
+apply plugin: 'kotlin-kapt'
+apply from: "../buildType.gradle"
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -14,11 +16,41 @@ android {
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
 
+        ndk {
+            // 满足这些就足够了 armeabi , armeabi-v7a , arm64-v8a
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+        }
+
+
+        signingConfig signingConfigs.debug
+        flavorDimensions "versionCode"
+        manifestPlaceholders = [
+                qqappid      : "",//友盟分享qq平台appid
+                UMENG_APPKEY : "",
+                // 极光推送
+                JPUSH_PKGNAME: rootProject.ext.android.applicationId,
+                JPUSH_APPKEY : rootProject.ext.configField.JPUSH_APPKEY,
+                JPUSH_CHANNEL: rootProject.ext.configField.JPUSH_CHANNEL,
+        ]
+
         // 1.ARouter
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME: project.getName()]
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
             }
+        }
+    }
+
+    splits {
+        //针对ABI进行APK分包 打正式包时会生成四个包
+        //用于有效的减少包体积 armeabi包只包含armeabi、armeabi-v7a包、arm64-v8a包、universal包(包含所有的ABI架构)
+        //目前应用市场支持上传64位包和32位包 用户下载就会自动下载手机支持的ABI架构的包
+        abi {
+            enable true
+            reset()
+            include 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+            //打包一个包含所有ABI的APK版本
+            universalApk true
         }
     }
 
@@ -47,6 +79,14 @@ android {
     dataBinding {
         enabled true
     }
+    packagingOptions {
+        exclude 'META-INF/*.kotlin_module'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
+    }
+
     //配置清单文件
     sourceSets {
         main {
@@ -61,19 +101,54 @@ android {
             }
         }
     }
+
+    signingConfigs {
+
+        debug {
+            storeFile file("../keystore/debug.jks")
+            storePassword "dayun123"
+            keyAlias "dayun123"
+            keyPassword "dayun123"
+            v2SigningEnabled true
+        }
+        release {
+            storeFile file("../keystore/debug.jks")
+            storePassword "dayun123"
+            keyAlias "dayun123"
+            keyPassword "dayun123"
+            v2SigningEnabled true
+        }
+    }
+
+    /*配置渠道*/
+    productFlavors {
+        huawei {
+        }
+        xiaomi {
+        }
+        yingyongbao {
+        }
+        oppo {
+        }
+        vivo {
+        }
+
+
+
+        productFlavors.all { flavor ->
+            flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+        }
+
+    }
 }
 
 dependencies {
     implementation fileTree(includes: ['*.jar'], dir: 'libs')
 
-    println("---------- 1. app.isBuildModule = ${isBuildModule}")
-    println(isBuildModule)
     //宿主项目中判断组件是否需要独立运行
     if (isBuildModule.toBoolean()) {
-        println("--------1.app.true")
         implementation project(':library-base')
     } else {
-        println("--------1.app.false")
         implementation project(':library-base')
         //登录模块
         implementation project(':module-login')

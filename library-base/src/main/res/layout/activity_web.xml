@@ -5,7 +5,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <include layout="@layout/layout_toolbar" />
+<!--        <include layout="@layout/layout_toolbar" />-->
+        <androidx.appcompat.widget.Toolbar
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_56"
+            android:background="?attr/colorPrimary"
+            app:navigationIcon="@drawable/yz_arrow_back_white"
+            app:titleTextAppearance="@style/ToolbarTextAppearance"
+            android:elevation="2dp"/>
         <WebView
             android:id="@+id/webView"
             android:layout_width="match_parent"
