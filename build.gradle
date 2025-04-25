@@ -6,13 +6,6 @@
 
     buildscript {
 
-        //加载资源
-        Properties properties = new Properties()
-        InputStream inputStream = project.rootProject.file('build.properties').newDataInputStream() ;
-        properties.load( inputStream )
-
-        def isBuildMod = properties.getProperty("isBuildModule")
-        ext.isBuildModule = isBuildMod
         println("---------- 1. ext.isBuildModule = ${ext.isBuildModule}")
 
         ext.kotlin_version = "1.7.20"
