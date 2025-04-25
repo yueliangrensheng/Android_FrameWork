@@ -21,9 +21,10 @@ ext {
 
     //配置各个模块资源前缀
     resourcePrefix = [
-            package_module_home : "home_",
-            package_module_login: "login_",
-            package_module_main : "main_"
+            package_module_base : "YZ_Base_",
+            package_module_home : "YZ_home_",
+            package_module_login: "YZ_login_",
+            package_module_main : "YZ_main_"
     ]
 
     // 配置三方的appkey

@@ -1,4 +1,4 @@
-package com.yazao.login.net
+package com.yazao.base.business.net
 
 object LoginParams {
     var username: String = ""

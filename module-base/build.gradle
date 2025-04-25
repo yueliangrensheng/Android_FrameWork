@@ -71,11 +71,13 @@ android {
         }
     }
 
+    resourcePrefix rootProject.ext.resourcePrefix['package_module_base']
+
 }
 
 dependencies {
     //2.ARouter
     kapt rootProject.ext.dependencies['arouter_compiler']
 
-    implementation project(':module-base')
+    api project(':library-base')
 }

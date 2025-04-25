@@ -16,8 +16,8 @@ import com.yazao.base.util.ClickUtil
 import com.yazao.lib.toast.XToast
 import com.yazao.lib.xlog.Log
 import com.yazao.login.databinding.ActivityLoginLayoutBinding
-import com.yazao.login.net.LoginParams
-import com.yazao.login.net.NetRequestManager
+import com.yazao.base.business.net.LoginParams
+import com.yazao.base.business.net.NetRequestManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

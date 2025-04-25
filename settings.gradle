@@ -2,6 +2,7 @@ rootProject.name = "Android_FrameWork"
 
 include ':app'
 include ':library-base'
+include ':module-base'
 include ':module-login'
 include ':module-main'
 include ':module-home'

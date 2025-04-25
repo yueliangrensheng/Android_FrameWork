@@ -1,7 +1,7 @@
-package com.yazao.login.net
+package com.yazao.base.business.net
 
 import com.yazao.base.model.ResultData
-import com.yazao.login.model.UpgradeBean
+import com.yazao.base.business.model.UpgradeBean
 import retrofit2.http.*
 
 interface ServiceApi {
