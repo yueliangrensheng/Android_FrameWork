@@ -5,6 +5,7 @@
     <application>
         <!--    启动页    -->
         <activity android:name="com.yazao.login.SplashActivity"
+            android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>

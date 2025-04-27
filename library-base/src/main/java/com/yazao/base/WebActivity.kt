@@ -42,10 +42,10 @@ open class WebActivity : BaseToolbarActivityKt<ActivityWebBinding>() {
         settings.builtInZoomControls = true
         settings.useWideViewPort = true
         settings.setSupportMultipleWindows(false)
-        settings.setAppCacheEnabled(true)
+        //settings.setAppCacheEnabled(true)
         // settings.setDatabaseEnabled(true);
         settings.setGeolocationEnabled(true)
-        settings.setAppCacheMaxSize(Long.MAX_VALUE)
+        //settings.setAppCacheMaxSize(Long.MAX_VALUE)
         // settings.setPageCacheCapacity(IX5WebSettings.DEFAULT_CACHE_CAPACITY);
         settings.pluginState = WebSettings.PluginState.ON_DEMAND
         // settings.setRenderPriority(WebSettings.RenderPriority.HIGH);

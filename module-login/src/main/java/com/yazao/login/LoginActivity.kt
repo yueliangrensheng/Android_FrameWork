@@ -83,7 +83,7 @@ class LoginActivity : BaseToolbarActivityKt<ActivityLoginLayoutBinding>() {
                 }
                 val intent = Intent(this@LoginActivity, WebActivity::class.java)
                 intent.putExtra(WebActivity.WEB_URL, privacyPolicyUrl)
-                intent.putExtra(WebActivity.WEB_TITLE, resources.getString(R.string.settings_privacy_policy))
+//                intent.putExtra(WebActivity.WEB_TITLE, resources.getString(R.string.settings_privacy_policy))
                 startActivity(intent)
             }
             //服务协议
@@ -93,7 +93,7 @@ class LoginActivity : BaseToolbarActivityKt<ActivityLoginLayoutBinding>() {
                 }
                 val intent = Intent(this@LoginActivity, WebActivity::class.java)
                 intent.putExtra(WebActivity.WEB_URL, serviceAgreementUrl)
-                intent.putExtra(WebActivity.WEB_TITLE, resources.getString(R.string.settings_user_agreement))
+//                intent.putExtra(WebActivity.WEB_TITLE, resources.getString(R.string.settings_user_agreement))
                 startActivity(intent)
             }
         }
@@ -137,7 +137,7 @@ class LoginActivity : BaseToolbarActivityKt<ActivityLoginLayoutBinding>() {
             } catch (e: Exception) {
                 hideLoading()
                 Log.e("server", e.message.toString())
-                XToast.show(R.string.setting_server_error)
+//                XToast.show(R.string.setting_server_error)
             }
         }
     }

@@ -75,3 +75,9 @@ lint/tmp/
 *.hprof
 
 .DS_Store
+
+app/xiaomi/
+app/vivo/
+app/oppo/
+app/yingyongbao/
+app/huawei/
