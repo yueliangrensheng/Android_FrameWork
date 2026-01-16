@@ -20,7 +20,14 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
-
+# 保留 SSL 相关类
+-dontwarn javax.lang.model.element.Element
+-keep class org.bouncycastle.** { *; }
+-keep class org.conscrypt.** { *; }
+-keep class org.openjsse.** { *; }
+# 添加更多SSL相关库的规则
+-dontwarn org.**
+-keep class org.** { *; }
 
 #未混淆的类和成员
 -printseeds proguard/seeds.txt

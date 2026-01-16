@@ -8,6 +8,7 @@ apply plugin: 'kotlin-kapt'
 apply from: "../buildType.gradle"
 
 android {
+    namespace 'com.yazao.base'
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
 
@@ -34,6 +35,9 @@ android {
 
     viewBinding {
         enabled true
+    }
+    buildFeatures{
+        buildConfig true
     }
 
     buildTypes {

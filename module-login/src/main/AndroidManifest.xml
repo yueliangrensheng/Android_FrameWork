@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.yazao.login">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application>
         <!--    启动页    -->
-        <activity android:name="com.yazao.login.SplashActivity"
+        <activity
+            android:name="com.yazao.login.SplashActivity"
+            android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>

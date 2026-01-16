@@ -6,6 +6,7 @@ apply plugin: 'kotlin-kapt'
 apply from: "../buildType.gradle"
 
 android {
+    namespace rootProject.ext.android.applicationId
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
 
@@ -22,7 +23,7 @@ android {
         }
 
 
-        signingConfig signingConfigs.debug
+
         flavorDimensions "versionCode"
         manifestPlaceholders = [
                 qqappid      : "",//友盟分享qq平台appid
@@ -54,10 +55,39 @@ android {
         }
     }
 
+    signingConfigs {
+
+        release {
+            def keystoreFile = rootProject.file("keystore/keystore.properties")
+            if (keystoreFile.exists()) {
+                def keystoreProps = new Properties()
+                keystoreProps.load(new FileInputStream(keystoreFile))
+                storeFile file("${rootProject.projectDir}/keystore/" + keystoreProps["storeFile"])
+                storePassword keystoreProps["storePassword"]
+                keyAlias keystoreProps["keyAlias"]
+                keyPassword keystoreProps["keyPassword"]
+                v1SigningEnabled true
+                v2SigningEnabled true
+            }
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            // 混淆
+            minifyEnabled true
+            shrinkResources true
+            //            applicationIdSuffix  ".release"
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            // 混淆
+            minifyEnabled true
+            shrinkResources true
+            //            applicationIdSuffix  ".debug"
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
@@ -79,6 +109,10 @@ android {
     dataBinding {
         enabled true
     }
+    buildFeatures{
+        viewBinding true
+        buildConfig true
+    }
     packagingOptions {
         exclude 'META-INF/*.kotlin_module'
         exclude 'META-INF/LICENSE'
@@ -99,24 +133,6 @@ android {
                 //集成到宿主
                 manifest.srcFile 'src/main/AndroidManifest.xml'
             }
-        }
-    }
-
-    signingConfigs {
-
-        debug {
-            storeFile file("../keystore/debug.jks")
-            storePassword "dayun123"
-            keyAlias "dayun123"
-            keyPassword "dayun123"
-            v2SigningEnabled true
-        }
-        release {
-            storeFile file("../keystore/debug.jks")
-            storePassword "dayun123"
-            keyAlias "dayun123"
-            keyPassword "dayun123"
-            v2SigningEnabled true
         }
     }
 

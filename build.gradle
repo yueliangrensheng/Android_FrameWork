@@ -8,7 +8,7 @@
 
         println("---------- 1. ext.isBuildModule = ${ext.isBuildModule}")
 
-        ext.kotlin_version = "1.7.20"
+        ext.kotlin_version = "1.9.22"
         repositories {
             maven {
                 url 'https://www.jitpack.io'
@@ -37,7 +37,7 @@
             mavenCentral()
         }
         dependencies {
-            classpath "com.android.tools.build:gradle:7.1.2"
+            classpath "com.android.tools.build:gradle:8.3.2"
             classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
             classpath "com.alibaba:arouter-register:1.0.2"
 
