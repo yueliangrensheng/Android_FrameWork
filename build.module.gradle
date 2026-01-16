@@ -51,6 +51,9 @@ android {
     viewBinding {
         enabled true
     }
+    buildFeatures{
+        buildConfig true
+    }
 
     //配置清单文件
     sourceSets {

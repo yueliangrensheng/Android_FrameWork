@@ -10,6 +10,7 @@ apply plugin: "kotlin-parcelize"
 apply from: "../buildType.gradle"
 
 android {
+    namespace 'com.yazao.business.base'
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
 
@@ -50,6 +51,9 @@ android {
 
     viewBinding {
         enabled true
+    }
+    buildFeatures{
+        buildConfig true
     }
 
     //配置清单文件

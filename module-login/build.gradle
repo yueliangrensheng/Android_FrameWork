@@ -1,6 +1,7 @@
 apply from: '../build.module.gradle'
 
 android {
+    namespace 'com.yazao.login'
     defaultConfig {
 
         if (isBuildModule.toBoolean()) {

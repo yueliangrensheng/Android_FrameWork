@@ -1,6 +1,7 @@
 apply from: '../build.module.gradle'
 
 android {
+    namespace 'com.yazao.main'
     defaultConfig {
 
         if (isBuildModule.toBoolean()) {
