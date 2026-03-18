@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name="com.yazao.base.WebActivity"
+            android:name="com.yazao.base.ui.WebActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
     </application>

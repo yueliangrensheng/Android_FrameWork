@@ -1,4 +1,4 @@
-package com.yazao.base
+package com.yazao.base.ui
 
 import android.os.Bundle
 import androidx.databinding.ViewDataBinding

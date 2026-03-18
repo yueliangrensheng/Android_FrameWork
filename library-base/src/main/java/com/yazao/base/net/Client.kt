@@ -3,6 +3,7 @@ package com.yazao.base.net
 import android.os.Looper
 import com.alibaba.android.arouter.launcher.ARouter
 import com.google.gson.Gson
+import com.yazao.base.BaseApplication
 import com.yazao.base.R
 import com.yazao.base.model.ResultData
 import com.yazao.base.router.RouterPath
@@ -23,7 +24,8 @@ object Client {
 
 
     private fun getHttpLogging(): HttpLoggingInterceptor {
-        val httpLoggingInterceptor = HttpLoggingInterceptor { message -> Log.d("response = $message") }
+        val httpLoggingInterceptor =
+            HttpLoggingInterceptor { message -> Log.d("response = $message") }
 
         httpLoggingInterceptor.apply {
             httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -37,20 +39,26 @@ object Client {
         val t1 = System.nanoTime()
         val builder = StringBuilder()
         val method = request.method
-        builder.append("""
+        builder.append(
+            """
     $method
     
-    """.trimIndent())
+    """.trimIndent()
+        )
         if ("GET" == method) {
-            builder.append("""
+            builder.append(
+                """
     Sending request
     ${request.url}
-    """.trimIndent())
+    """.trimIndent()
+            )
         } else if ("POST" == method) {
-            builder.append("""
+            builder.append(
+                """
     Sending request
     ${request.url}
-    """.trimIndent())
+    """.trimIndent()
+            )
             try {
                 val body = request.body
 
@@ -99,16 +107,20 @@ object Client {
         rBody = buffer.clone().readString(charset!!)
 
         builder.append("\n")
-        builder.append("""
+        builder.append(
+            """
     Response code = ${response.code}  $rBody
-    """.trimIndent())
+    """.trimIndent()
+        )
 
         builder.append("\n")
         val t2 = System.nanoTime()
-        builder.append("""
+        builder.append(
+            """
     Received response in ${(t2 - t1) / 1e6}ms
     
-    """.trimIndent())
+    """.trimIndent()
+        )
 
         Log.i(builder.toString())
 
@@ -120,8 +132,26 @@ object Client {
         val request: Request = chain.request()
 
         val header = request.newBuilder().header("platform", "Android")
+            //X-CID：设备id
+            //X-VERSION：应用的版本号
+            //X-OS：手机系统信息。
+            //X-PLATFORM：安卓传入android，苹果传入ios
+            //X-MODEL：手机型号
+            //X-TOKEN：通过移动端登录后获取的token字段
+            .header(
+                "X-CID",
+                ""
+            )//设备id
+            .header(
+                "X-VERSION",
+                ""
+            )//
+            .header("X-OS", "")
+            .header("X-PLATFORM", "android")
+            .header("X-MODEL", "")
+            .header("X-TOKEN", Token.getToken() ?: "")
         if (Token.isLogin()) {
-            header.header("Cookie", "JSESSIONID=${Token.token}")
+            header.header("Cookie", "JSESSIONID=${Token.getToken()}")
         }
         val authenticatedRequest = header.build()
         val response: Response = chain.proceed(authenticatedRequest)
@@ -172,10 +202,11 @@ object Client {
 
             /****************** token *********************/
             val data: ResultData<*> = Gson().fromJson(bodyString, ResultData::class.java)
-            if (data.code === 2003) {
+            if (data.code == HttpCode.TOKEN_EXPIRED_CODE) {
                 //token过期
-                Token.token = ""
-                ARouter.getInstance().build(RouterPath.Login.PAGE_ACTIVITY_LOGIN).withBoolean(Token.KEY_TOKEN, false).navigation()
+                Token.clearToken()
+                ARouter.getInstance().build(RouterPath.Login.PAGE_ACTIVITY_LOGIN)
+                    .withBoolean(Token.KEY_TOKEN, false).navigation()
                 if (Looper.myLooper() == null) {
                     Looper.prepare()
                 }
@@ -199,16 +230,16 @@ object Client {
 
     @JvmField
     val okHttpClientBuilder = OkHttpClient.Builder()
-            .addInterceptor(headerInterceptor)
-            .addInterceptor(tokenInterceptor)
+        .addInterceptor(headerInterceptor)
+        .addInterceptor(tokenInterceptor)
 //            .addInterceptor(getHttpLogging())
-            .addInterceptor(mLoggingInterceptor)
-            .connectTimeout(20, TimeUnit.SECONDS)
-            .readTimeout(20, TimeUnit.SECONDS)
-            .writeTimeout(20, TimeUnit.SECONDS)
-            .retryOnConnectionFailure(true)
+        .addInterceptor(mLoggingInterceptor)
+        .connectTimeout(20, TimeUnit.SECONDS)
+        .readTimeout(20, TimeUnit.SECONDS)
+        .writeTimeout(20, TimeUnit.SECONDS)
+        .retryOnConnectionFailure(true)
 
     @JvmField
     val okHttpClient: OkHttpClient = okHttpClientBuilder
-            .build()
+        .build()
 }

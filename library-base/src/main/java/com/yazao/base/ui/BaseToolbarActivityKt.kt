@@ -1,4 +1,4 @@
-package com.yazao.base
+package com.yazao.base.ui
 
 import android.app.Activity
 import android.os.Build
@@ -8,12 +8,13 @@ import android.view.View
 import android.widget.FrameLayout
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.Toolbar
+import androidx.databinding.ViewDataBinding
 import com.yazao.base.util.SystemBarTintManager
 import com.yazao.base.weight.loading.LoadingDialog
 import com.yazao.lib.xbase.BaseActivityKt
 
 
-abstract class BaseToolbarActivityKt<DB : androidx.databinding.ViewDataBinding> : BaseActivityKt<DB>() {
+abstract class BaseToolbarActivityKt<DB : ViewDataBinding> : BaseActivityKt<DB>() {
     lateinit var systemBarTintManager: SystemBarTintManager
 
     private lateinit var dialogLoading: LoadingDialog
@@ -40,7 +41,7 @@ abstract class BaseToolbarActivityKt<DB : androidx.databinding.ViewDataBinding> 
         systemBarTintManager = SystemBarTintManager(this)
         systemBarTintManager.isStatusBarTintEnabled = true
         systemBarTintManager.setStatusBarColorAuto(this)
-        systemBarTintManager.setStatusBarTintColor(resources.getColor(R.color.color_main))
+        systemBarTintManager.setStatusBarTintColor(resources.getColor(com.yazao.base.R.color.color_main))
 
         setRootViewFitsSystemWindows(this, true)
 

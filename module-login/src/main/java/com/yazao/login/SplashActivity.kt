@@ -8,7 +8,7 @@ import android.view.KeyEvent
 import androidx.databinding.ViewDataBinding
 import com.permissionx.guolindev.PermissionX
 import com.yazao.base.BaseApplication
-import com.yazao.base.BaseToolbarActivityKt
+import com.yazao.base.ui.BaseToolbarActivityKt
 import com.yazao.base.util.ACacheUtil
 
 
